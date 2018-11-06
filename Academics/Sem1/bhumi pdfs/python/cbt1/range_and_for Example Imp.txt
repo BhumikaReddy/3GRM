@@ -1,0 +1,213 @@
+
+range:
+- range is a builtin function
+- range is lazy. 
+- range conceptually generates an arithmetic progression.
+- range can take one argument, two arguments or three arguments.
+
+
+usage:
+       range(start,stop,step)
+
+>>>list(range(1, 10, 2))
+[1, 3, 5, 7, 9]
+
+- range can take one argument, two arguments or three arguments.
+   Let us take three examples to illustrate these cases.
+
+Only one argument:
+The argument is one past the final value.
+The default initial value is 0.
+The step or the common difference is 1.
+
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+
+Two arguments:
+The first argument is the initial value.
+The second argument is one past the final value.
+The step or the common difference is 1.
+>>> list(range(5,10))
+[5, 6, 7, 8, 9]
+
+Three arguments:
+The first argument is the initial value.
+The second argument is one past the final value.
+The third argument is the step or the common difference.
+
+>>> list(range(5,15, 2))
+[5, 7, 9, 11, 13]
+
+
+Experiment:
+- can the step be 0
+- what happens?
+list(range(5, 1))
+- can the step be negative?
+- what happens?
+list(range(1, 5, -1))
+list(range(5, 1, -1))
+- can these arguments be float?
+
+
+
+for statement:
+- for statement is a looping structure
+- The number of times we execute the body or the suite is normally determinable
+- we use a while loop when the number of iterations is not known in the beginning
+        and we use a for loop when the number of iterations is known
+
+syntax:
+for <variable> in <iterable> :
+	<suite>
+
+iterable or sequence
+- physically or conceptually has number of elements
+- has a builtin mechanism to give an element each time we ask
+- has a builtin mechanism to signal when there are no more elements.
+
+
+Examples:
+
+>>> for i in range(5):
+     print(i, end = "")
+
+0 1 2 3 4
+
+b) List physically contains 4 elements in this case.
+The loop variable gets the value 11 first time.
+Then for statement executes the body.
+It then gets 22 to the loop variable. 22 is displayed.
+It keeps repeating until all the elements in the list are exhausted.
+At that point the list signals that it has no more elements.
+
+>>> for i in [11, 22, 33, 44]:
+            print(i)
+ 
+11
+22
+33
+44
+
+Examples to illustrate when to use the while loop and when to use the for loop:
+#to print names of a list ,using for is much better than while
+names=[
+      	  "acharya","anusha","ayushi","akshaya",
+	            "anant","pavan","kumar","kishore",
+	           "charan","bhumika","anirudh","sujay",
+        ]
+
+
+for i in names:
+      print("Hi",i)
+
+
+      
+
+print('-------------------')
+i=0
+while(i<=len(names)):
+      print("Hi",names[i])
+      i=i+1
+
+
+
+#display square of all numbers upto n
+n = int(input("enter an integer : "))
+for i in range(1,11):
+      print(i*i)
+
+print('-------------------')
+n = int(input("enter an integer : "))
+i = 1
+while(i<=n):
+	print(i*i)
+	i=i+1
+
+
+
+        
+display squares of numbers from 1 to n.
+
+This works. But is not preferred as the number of times the loop has to be 
+executed is known in the beginning itself.
+
+# file : 1_squares.py
+# display all squares from 1 to n
+n = int(input("enter an integer : "))
+i = 1
+while i <= n :
+	print("Square of ", i, " is ", i * i)
+	i += 1
+
+output:
+enter an integer : 5
+Square of  1  is  1
+Square of  2  is  4
+Square of  3  is  9
+Square of  4  is  16
+Square of  5  is  25
+
+b) 
+This is a cleaner program.
+We do not have to take care of initializaton and 
+modification of the loop variable separately.
+
+
+
+# file 2_squares.py
+# display all squares from 1 to n
+n = int(input("enter an integer : "))
+for i in range(1, n + 1):
+	print("Square of ", i, " is ", i * i)
+
+output:
+enter an integer : 5
+Square of  1  is  1
+Square of  2  is  4
+Square of  3  is  9
+Square of  4  is  16
+Square of  5  is  25
+
+Rule: use while when you have to, use for whenever you can.
+
+
+c)  display all squares less than or equal to n
+We cannot easily pre-compute the number of iterations.
+We prefer a while loop here.
+
+# file 3_squares.py
+# display all squares,squared values is less than or equal to a given number
+n = int(input("enter an integer : "))
+i = 1
+while i * i<= n :
+	print("Square of ", i, " is ", i * i)
+	i += 1
+
+output:
+enter an integer : 40
+Square of  1  is  1
+Square of  2  is  4
+Square of  3  is  9
+Square of  4  is  16
+Square of  5  is  25
+Square of  6  is  36
+
+This works. But this is a bad program. Observe we are squaring i twice - once to
+check whether  we should stay in the loop and the second time for displaying.
+rule: never repeat evaluating the same expression.
+
+Here is the changed program.
+# file 4_squares.py
+# display all squares less than or equal to a given number
+n = int(input("enter an integer : "))
+i = 1
+sq_i = i * i
+while sq_i <= n :
+	print("Square of ", i, " is ", sq_i)
+	i += 1
+	sq_i = i * i
+
+Observe that square of i is computed before entering the loop and at the end of the body
+of the loop. This is a fairly commonly used technique in programming.
+
