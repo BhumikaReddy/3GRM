@@ -30,8 +30,8 @@ void setup() {
 
 void loop() {
   ReadRainSensor();
-  ReadRainSensor();
-  delay(100);
+  LoraSensor();
+  delay(2500);
 }
 
 void ReadRainSensor()
